@@ -4,15 +4,13 @@ using VRC.Udon;
 
 namespace LoliPoliceDepartment.Utilities.AccountManager
 {
-    // Short alias for the new namespace
-    using NewNS = _4liceD.Utilities.AccountManager;
-
     /// <summary>
     /// Backwards-compatibility shim.
-    /// Use 4liceD.Utilities.AccountManager.OfficerAccountManager instead.
+    /// Use _4liceD.Utilities.AccountManager.OfficerAccountManager instead.
     /// </summary>
+    [UdonBehaviourSyncMode(BehaviourSyncMode.None)]
     [System.Obsolete("Use _4liceD.Utilities.AccountManager.OfficerAccountManager instead.")]
-    public class OfficerAccountManager : NewNS.OfficerAccountManager
+    public class OfficerAccountManager : _4liceD.Utilities.AccountManager.OfficerAccountManager
     {
         // No extra logic here – everything is inherited
     }
