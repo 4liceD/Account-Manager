@@ -58,3 +58,5 @@ Source code for each release is available in this repository, as required by GPL
 ## Disclaimer
 
 This fork is **not affiliated with or endorsed by** the original project or its maintainers.
+
+<img width="395" height="363" alt="image" src="https://github.com/user-attachments/assets/05b51211-0dd8-4d52-aa50-bb1dab791e38" />
