@@ -727,15 +727,15 @@ namespace 4liceD.Utilities.AccountManager
         public override void OnInspectorGUI() {
             OfficerAccountManager manager = (OfficerAccountManager)target;
 
-            HeaderBG    = HeaderBG    ?? (Texture2D)AssetDatabase.LoadAssetAtPath("Packages/com.localpolicedepartment.accountmanager/Resources/Layers/BG.png", typeof(Texture2D));
-            HeaderLogo  = HeaderLogo  ?? (Texture2D)AssetDatabase.LoadAssetAtPath("Packages/com.localpolicedepartment.accountmanager/Resources/Layers/Logo.png", typeof(Texture2D));
-            HeaderText  = HeaderText  ?? (Texture2D)AssetDatabase.LoadAssetAtPath("Packages/com.localpolicedepartment.accountmanager/Resources/Layers/Words.png", typeof(Texture2D));
-            HeaderTape  = HeaderTape  ?? (Texture2D)AssetDatabase.LoadAssetAtPath("Packages/com.localpolicedepartment.accountmanager/Resources/Layers/TapeL1000.png", typeof(Texture2D));
+            HeaderBG    = HeaderBG    ?? (Texture2D)AssetDatabase.LoadAssetAtPath("Packages/com.4liced.accountmanager/Resources/Layers/BG.png", typeof(Texture2D));
+            HeaderLogo  = HeaderLogo  ?? (Texture2D)AssetDatabase.LoadAssetAtPath("Packages/com.4liced.accountmanager/Resources/Layers/Logo.png", typeof(Texture2D));
+            HeaderText  = HeaderText  ?? (Texture2D)AssetDatabase.LoadAssetAtPath("Packages/com.4liced.accountmanager/Resources/Layers/Words.png", typeof(Texture2D));
+            HeaderTape  = HeaderTape  ?? (Texture2D)AssetDatabase.LoadAssetAtPath("Packages/com.4liced.accountmanager/Resources/Layers/TapeL1000.png", typeof(Texture2D));
 
-            twitterLogo = twitterLogo ?? (Texture2D)AssetDatabase.LoadAssetAtPath("Packages/com.localpolicedepartment.accountmanager/Resources/SocialLogos/TwitterLogo.png", typeof(Texture2D));
-            discordLogo = discordLogo ?? (Texture2D)AssetDatabase.LoadAssetAtPath("Packages/com.localpolicedepartment.accountmanager/Resources/SocialLogos/DiscordLogo.png", typeof(Texture2D));
-            youtubeLogo = youtubeLogo ?? (Texture2D)AssetDatabase.LoadAssetAtPath("Packages/com.localpolicedepartment.accountmanager/Resources/SocialLogos/YoutubeLogo.png", typeof(Texture2D));
-            kofiLogo    = kofiLogo    ?? (Texture2D)AssetDatabase.LoadAssetAtPath("Packages/com.localpolicedepartment.accountmanager/Resources/SocialLogos/KofiLogo.png", typeof(Texture2D));
+            twitterLogo = twitterLogo ?? (Texture2D)AssetDatabase.LoadAssetAtPath("Packages/com.4liced.accountmanager/Resources/SocialLogos/TwitterLogo.png", typeof(Texture2D));
+            discordLogo = discordLogo ?? (Texture2D)AssetDatabase.LoadAssetAtPath("Packages/com.4liced.accountmanager/Resources/SocialLogos/DiscordLogo.png", typeof(Texture2D));
+            youtubeLogo = youtubeLogo ?? (Texture2D)AssetDatabase.LoadAssetAtPath("Packages/com.4liced.accountmanager/Resources/SocialLogos/YoutubeLogo.png", typeof(Texture2D));
+            kofiLogo    = kofiLogo    ?? (Texture2D)AssetDatabase.LoadAssetAtPath("Packages/com.4liced.accountmanager/Resources/SocialLogos/KofiLogo.png", typeof(Texture2D));
 
             float imageAspectRatio = ((float) HeaderBG.width) / ((float) HeaderBG.height);
             float screenAspectRatio = ((float) Screen.width) / ((float) 128);
@@ -862,7 +862,7 @@ namespace 4liceD.Utilities.AccountManager
             // }
         }
 
-        [MenuItem("4liceD/Account Manager")]
+        [MenuItem("Tools/Account Manager")]
         public static void AddToSceneMenu()
         {
             bool exists = Component.FindObjectOfType<OfficerAccountManager>();
@@ -876,7 +876,7 @@ namespace 4liceD.Utilities.AccountManager
             }
             else
             {
-                GameObject am = (GameObject)PrefabUtility.InstantiatePrefab(AssetDatabase.LoadAssetAtPath("Packages/com.localpolicedepartment.accountmanager/Officer Account Manager.prefab", typeof(GameObject)));
+                GameObject am = (GameObject)PrefabUtility.InstantiatePrefab(AssetDatabase.LoadAssetAtPath("Packages/com.4liced.accountmanager/Officer Account Manager.prefab", typeof(GameObject)));
                 PrefabUtility.UnpackPrefabInstance(am, PrefabUnpackMode.Completely, InteractionMode.AutomatedAction);
             }
         }
