@@ -689,13 +689,13 @@ namespace _4liceD.Utilities.AccountManager
 
 
 
-    #if UNITY_EDITOR && !COMPILER_UDONSHARP
+#if UNITY_EDITOR && !COMPILER_UDONSHARP
     /// <summary>
     /// Custom inspector for the <see cref="OfficerAccountManager"/> class.
     /// </summary>
     [CustomEditor(typeof(OfficerAccountManager))]
-    public class OfficerAccountManagerEditor : Editor {
-
+    public class OfficerAccountManagerEditor : Editor
+    {
         private Texture2D headerTitleBar;
 
         private SerializedProperty performanceLogging;
@@ -705,154 +705,131 @@ namespace _4liceD.Utilities.AccountManager
         private SerializedProperty desiredDataSource;
         private SerializedProperty dataFormat;
 
-        private void OnEnable() {
+        private void OnEnable()
+        {
             performanceLogging = serializedObject.FindProperty("performanceLogging");
-            rawOfficerData = serializedObject.FindProperty("rawOfficerData");
-            officerDataFile = serializedObject.FindProperty("officerDataFile");
-            _RemoteDataURL = serializedObject.FindProperty("_remoteDataURL");
-            desiredDataSource = serializedObject.FindProperty("desiredDataSource");
-            dataFormat = serializedObject.FindProperty("dataFormat");
+            rawOfficerData     = serializedObject.FindProperty("rawOfficerData");
+            officerDataFile    = serializedObject.FindProperty("officerDataFile");
+            _RemoteDataURL     = serializedObject.FindProperty("_remoteDataURL");
+            desiredDataSource  = serializedObject.FindProperty("desiredDataSource");
+            dataFormat         = serializedObject.FindProperty("dataFormat");
         }
 
-        public override void OnInspectorGUI() {
-    OfficerAccountManager manager = (OfficerAccountManager)target;
+        public override void OnInspectorGUI()
+        {
+            OfficerAccountManager manager = (OfficerAccountManager)target;
 
-    // --- Simple title bar header ---
-    if (headerTitleBar == null)
-    {
-        headerTitleBar = (Texture2D)AssetDatabase.LoadAssetAtPath(
-            "Packages/com.4liced.accountmanager/Resources/TITLEBAR.png",
-            typeof(Texture2D)
-        );
-    }
+            // --- Title bar header ---
+            if (headerTitleBar == null)
+            {
+                headerTitleBar = (Texture2D)AssetDatabase.LoadAssetAtPath(
+                    "Packages/com.4liced.accountmanager/Resources/TITLEBAR.png",
+                    typeof(Texture2D)
+                );
+            }
 
-    const float headerHeight = 128f;
+            const float headerHeight = 128f;
 
-    if (headerTitleBar != null)
-    {
-        // Reserve space and draw inside that rect
-        Rect headerRect = GUILayoutUtility.GetRect(Screen.width, headerHeight);
-        GUI.DrawTexture(headerRect, headerTitleBar, ScaleMode.ScaleAndCrop);
-    }
-    else
-    {
-        // Fallback spacing if the texture can't be found
-        GUILayout.Space(10f);
-    }
+            if (headerTitleBar != null)
+            {
+                Rect headerRect = GUILayoutUtility.GetRect(Screen.width, headerHeight);
+                GUI.DrawTexture(headerRect, headerTitleBar, ScaleMode.ScaleAndCrop);
+            }
+            else
+            {
+                GUILayout.Space(10f);
+            }
 
-    // --- the rest of your inspector code stays the same below this ---
-    // Reused variables
-    bool online = manager.desiredDataSource == DataSource.Internet;
-    bool hasOfflineData = manager.officerDataFile != null;
+            // --- Inspector body ---
 
-    // ... (rest of your existing inspector code unchanged)
-}
+            bool online        = manager.desiredDataSource == DataSource.Internet;
+            bool hasOfflineData = manager.officerDataFile != null;
 
-
-
-            //List statistics
-            string rawData = manager.rawOfficerData;
             using (new GUILayout.HorizontalScope(EditorStyles.helpBox))
             {
-                GUIStyle statisticStyle = EditorStyles.boldLabel;
-                statisticStyle.alignment = TextAnchor.MiddleCenter;
+                GUIStyle statisticStyle = new GUIStyle(EditorStyles.boldLabel)
+                {
+                    alignment = TextAnchor.MiddleCenter
+                };
 
-                string dataFormat = manager.dataFormat == DataFormat.CSV ? "CSV" : "JSON";
+                string df = manager.dataFormat == DataFormat.CSV ? "CSV" : "JSON";
+
                 if (online)
                 {
                     if (hasOfflineData)
-                    {
-                        EditorGUILayout.LabelField("Using online "+dataFormat+" data with offline backup", statisticStyle);
-                    }
+                        EditorGUILayout.LabelField("Using online " + df + " data with offline backup", statisticStyle);
                     else
-                    {
-                        EditorGUILayout.LabelField("Using online "+dataFormat+" data without offline backup", statisticStyle);
-                    }
+                        EditorGUILayout.LabelField("Using online " + df + " data without offline backup", statisticStyle);
                 }
                 else
                 {
                     if (hasOfflineData)
-                    {
-                        EditorGUILayout.LabelField("Using offline "+dataFormat+" data", statisticStyle);
-                    }
+                        EditorGUILayout.LabelField("Using offline " + df + " data", statisticStyle);
                     else
-                    {
                         EditorGUILayout.LabelField("No data file selected", statisticStyle);
-                    }
                 }
             }
-            // //OFFLINE CSV STATISTICS
-            // int rows = rawData.Count(c => c == '\n') + 1;
-            // int columns = rawData.Substring(0, rawData.IndexOf('\n')).Count(c => c == ',') + 1;
-            // EditorGUILayout.LabelField((online ? "Offline " : "") + "Officers: " + (rows - 1), statisticStyle);
-            // EditorGUILayout.LabelField((online ? "Offline " : "") + "Roles: " + (columns - 1), statisticStyle);
 
             EditorGUILayout.Space();
 
             EditorGUI.BeginChangeCheck();
-                EditorGUILayout.PropertyField(desiredDataSource, new GUIContent("Preferred Data Source", "The preferred location for fetching account data."));
+            EditorGUILayout.PropertyField(desiredDataSource, new GUIContent("Preferred Data Source", "The preferred location for fetching account data."));
 
+            if (online)
+            {
+                EditorGUILayout.PropertyField(_RemoteDataURL, new GUIContent(
+                    "Remote Data URL",
+                    "The URL for online officer data. If users have Untrusted URLs disabled then only the following sources are valid:\n" +
+                    "GitHub (*.github.io)\n" +
+                    "Pastebin (pastebin.com)\n" +
+                    "Github Gist (gist.githubusercontent.com)\n" +
+                    "See the official VRChat documentation for more information."
+                ));
+            }
+
+            EditorGUI.BeginChangeCheck();
+            EditorGUILayout.PropertyField(officerDataFile, new GUIContent(
+                (online ? "Offline " : "") + "Officer Data File",
+                "The CSV or JSON file containing officer data."
+            ));
+
+            if (!hasOfflineData)
+            {
                 if (online)
                 {
-                    EditorGUILayout.PropertyField(_RemoteDataURL, new GUIContent("Remote Data URL", "The URL for online officer data. If users have Untrusted URLs disabled then only the following sources are valid:\n" +
-                                                                                            "GitHub (*.github.io)\n" +
-                                                                                            "Pastebin (pastebin.com)\n" +
-                                                                                            "Github Gist (gist.githubusercontent.com)\n" +
-                                                                                            "See the official VRChat documentation for more information."));
+                    EditorGUILayout.HelpBox(
+                        "No backup data file is selected. If the remote data URL fails to load the account manager will not function.",
+                        MessageType.Warning
+                    );
                 }
-                
-                EditorGUI.BeginChangeCheck();
-                    //Officer data file picker
-                    EditorGUILayout.PropertyField(officerDataFile, new GUIContent((online ? "Offline " : "") + "Officer Data File", "The CSV or JSON file containing officer data."));
-                    if (!hasOfflineData)
-                    {
-                        if (online)
-                        {
-                            //Warning
-                            EditorGUILayout.HelpBox("No backup data file is selected. If the remote data URL fails to load the account manager will not function.", MessageType.Warning);
-                        }
-                        else
-                        {
-                            //Error
-                            EditorGUILayout.HelpBox("Please select a CSV or JSON file containing officer data.", MessageType.Error);
-                        }
-                    }
-                if (EditorGUI.EndChangeCheck()) {
-                    serializedObject.ApplyModifiedProperties();
-                    //Update the raw data
-                    if (manager.officerDataFile != null) {
-                        manager.rawOfficerData = manager.officerDataFile.text;
-                    }
-                    else
-                    {
-                        manager.rawOfficerData = "";
-                    }
+                else
+                {
+                    EditorGUILayout.HelpBox(
+                        "Please select a CSV or JSON file containing officer data.",
+                        MessageType.Error
+                    );
                 }
+            }
 
-                EditorGUILayout.PropertyField(dataFormat, new GUIContent("Data Format", "The expected format of the data for parsing."));
-                EditorGUILayout.PropertyField(performanceLogging, new GUIContent("Performance Logging", "Enables performance logging for the account manager. This will print the time it takes to parse the data and generate lists to the console."));
-            if (EditorGUI.EndChangeCheck()) {
+            if (EditorGUI.EndChangeCheck())
+            {
+                serializedObject.ApplyModifiedProperties();
+
+                if (manager.officerDataFile != null)
+                    manager.rawOfficerData = manager.officerDataFile.text;
+                else
+                    manager.rawOfficerData = "";
+            }
+
+            EditorGUILayout.PropertyField(dataFormat, new GUIContent("Data Format", "The expected format of the data for parsing."));
+            EditorGUILayout.PropertyField(performanceLogging, new GUIContent("Performance Logging", "Enables performance logging for the account manager. This will print the time it takes to parse the data and generate lists to the console."));
+
+            if (EditorGUI.EndChangeCheck())
+            {
                 serializedObject.ApplyModifiedProperties();
             }
 
             EditorGUILayout.Space();
-
-            // using (new GUILayout.HorizontalScope())
-            // {
-            //     GUI.color = Color.white;
-            //     GUI.backgroundColor = Color.white;
-            //     GUIStyle socialLinkStyle = new GUIStyle(EditorStyles.miniButtonMid);
-            //     socialLinkStyle.fixedHeight = 20;
-            //
-            //     GUI.backgroundColor = new Color(0.4509804f, 0.5411765f, 0.8588236f, 1f);
-            //     if (GUILayout.Button(new GUIContent(discordLogo, "Discord"), socialLinkStyle, GUILayout.Width(Screen.width / 4))) Application.OpenURL("https://discord.gg/lpd");
-            //     GUI.backgroundColor = new Color(0.1137255f, 0.6313726f, 0.9490196f, 1f);
-            //     if (GUILayout.Button(new GUIContent(twitterLogo, "Twitter"), socialLinkStyle, GUILayout.Width(Screen.width / 4))) Application.OpenURL("https://twitter.com/LPD_vrchat");
-            //     GUI.backgroundColor = new Color(0.8039216f, 0.1254902f, 0.1215686f, 1f);
-            //     if (GUILayout.Button(new GUIContent(youtubeLogo, "Youtube"), socialLinkStyle, GUILayout.Width(Screen.width / 4))) Application.OpenURL("https://www.youtube.com/c/LoliPoliceDepartment");
-            //     GUI.backgroundColor = new Color(1f, 0.3137255f, 0.3137255f, 1f);
-            //     if (GUILayout.Button(new GUIContent(kofiLogo, "Ko-fi")     , socialLinkStyle, GUILayout.Width(Screen.width / 4))) Application.OpenURL("https://ko-fi.com/lolipolicedepartment");
-            // }
         }
 
         [MenuItem("Tools/Account Manager")]
@@ -861,18 +838,20 @@ namespace _4liceD.Utilities.AccountManager
             bool exists = Component.FindObjectOfType<OfficerAccountManager>();
             if (exists)
             {
-                //Select it, ping it, and return
                 OfficerAccountManager amInstance = Component.FindObjectOfType<OfficerAccountManager>();
                 Selection.activeObject = amInstance;
                 EditorGUIUtility.PingObject(amInstance);
                 return;
             }
-            else
-            {
-                GameObject am = (GameObject)PrefabUtility.InstantiatePrefab(AssetDatabase.LoadAssetAtPath("Packages/com.4liced.accountmanager/Officer Account Manager.prefab", typeof(GameObject)));
-                PrefabUtility.UnpackPrefabInstance(am, PrefabUnpackMode.Completely, InteractionMode.AutomatedAction);
-            }
+
+            GameObject am = (GameObject)PrefabUtility.InstantiatePrefab(
+                AssetDatabase.LoadAssetAtPath(
+                    "Packages/com.4liced.accountmanager/Officer Account Manager.prefab",
+                    typeof(GameObject)
+                )
+            );
+            PrefabUtility.UnpackPrefabInstance(am, PrefabUnpackMode.Completely, InteractionMode.AutomatedAction);
         }
     }
-    #endif
+#endif
 }

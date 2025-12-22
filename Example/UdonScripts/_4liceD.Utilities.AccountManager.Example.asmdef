@@ -1,10 +1,10 @@
 {
-    "name": "LocalPoliceDepartment.Utilities.AccountManager.Example",
+    "name": "_4liceD.Utilities.AccountManager.Example",
     "rootNamespace": "",
     "references": [
         "UdonSharp.Runtime",
-        "LocalPoliceDepartment.Utilities.AccountManager.Udon",
-        "LocalPoliceDepartment.Utilities.AccountManager.Resources"
+        "_4liceD.Utilities.AccountManager.Udon",
+        "_4liceD.Utilities.AccountManager.Resources"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

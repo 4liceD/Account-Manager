@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c333ccfdd0cbdbc4ca30cef2dd6e6b9b, type: 3}
   m_Name: RestrictionIndicator
   m_EditorClassIdentifier: 
-  serializedUdonProgramAsset: {fileID: 11400000, guid: 1372a69b4138b6f41ac1541f6c0a9c6e, type: 2}
+  serializedUdonProgramAsset: {fileID: 11400000, guid: b7c9768d939aaa240ae02d978cde0862,
+    type: 2}
   udonAssembly: 
   assemblyError: 
   sourceCsScript: {fileID: 11500000, guid: b15c87127888f7c4cab9a00f6bfe1687, type: 3}
@@ -62,7 +63,7 @@ MonoBehaviour:
     - Name: 
       Entry: 1
       Data: LocalPoliceDepartment.Utilities.AccountManager.OfficerAccountManager,
-        LocalPoliceDepartment.Utilities.AccountManager.Udon
+        _4liceD.Utilities.AccountManager.Udon
     - Name: 
       Entry: 8
       Data: 

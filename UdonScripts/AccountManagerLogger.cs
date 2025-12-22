@@ -7,7 +7,7 @@ using VRC.SDK3.Data;
 using VRC.SDKBase;
 using VRC.Udon;
 
-namespace LocalPoliceDepartment.Utilities.AccountManager
+namespace _4liceD.Utilities.AccountManager
 {
     public class AccountManagerLogger : UdonSharpBehaviour
     {

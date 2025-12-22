@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c333ccfdd0cbdbc4ca30cef2dd6e6b9b, type: 3}
   m_Name: RestrictedPickup
   m_EditorClassIdentifier: 
-  serializedUdonProgramAsset: {fileID: 11400000, guid: 190509fe776493a43ba9823334b2fb12, type: 2}
+  serializedUdonProgramAsset: {fileID: 11400000, guid: 40abd08e1c2ac3a4caeaa9499d0e6040,
+    type: 2}
   udonAssembly: 
   assemblyError: 
   sourceCsScript: {fileID: 11500000, guid: adb83df6c8f174d42a791352beae81d3, type: 3}
@@ -62,7 +63,7 @@ MonoBehaviour:
     - Name: 
       Entry: 1
       Data: LocalPoliceDepartment.Utilities.AccountManager.OfficerAccountManager,
-        LocalPoliceDepartment.Utilities.AccountManager.Udon
+        _4liceD.Utilities.AccountManager.Udon
     - Name: 
       Entry: 8
       Data: 

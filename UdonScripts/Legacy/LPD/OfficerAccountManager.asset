@@ -10,18 +10,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c333ccfdd0cbdbc4ca30cef2dd6e6b9b, type: 3}
-  m_Name: OfficerAccountManager
+  m_Name: OfficerAccountManager_LegacyShim
   m_EditorClassIdentifier: 
-  serializedUdonProgramAsset: {fileID: 11400000, guid: a7778c69a173d9a42be68af2009a12f7,
+  serializedUdonProgramAsset: {fileID: 11400000, guid: aa452bbea6b143f478e6d0219ebf9f52,
     type: 2}
   udonAssembly: 
   assemblyError: 
-  sourceCsScript: {fileID: 11500000, guid: c121e725f5c84c3449c57d9db761d1cd, type: 3}
+  sourceCsScript: {fileID: 11500000, guid: f3ee3d7113a10f7418a59443ef0cd86b, type: 3}
   scriptVersion: 2
   compiledVersion: 2
   behaviourSyncMode: 1
   hasInteractEvent: 0
-  scriptID: 4273631921791940199
+  scriptID: 5988722783255402539
   serializationData:
     SerializedFormat: 2
     SerializedBytes: 

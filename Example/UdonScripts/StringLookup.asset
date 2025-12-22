@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c333ccfdd0cbdbc4ca30cef2dd6e6b9b, type: 3}
   m_Name: StringLookup
   m_EditorClassIdentifier: 
-  serializedUdonProgramAsset: {fileID: 11400000, guid: 18668d23708d4e94a9f5fb28488fc23b, type: 2}
+  serializedUdonProgramAsset: {fileID: 11400000, guid: 160244b1cad7b114484c780fab1d145e,
+    type: 2}
   udonAssembly: 
   assemblyError: 
   sourceCsScript: {fileID: 11500000, guid: 28a547feb0ab63b498efc67d7e8a8c5b, type: 3}
@@ -62,7 +63,7 @@ MonoBehaviour:
     - Name: 
       Entry: 1
       Data: LocalPoliceDepartment.Utilities.AccountManager.OfficerAccountManager,
-        LocalPoliceDepartment.Utilities.AccountManager.Udon
+        _4liceD.Utilities.AccountManager.Udon
     - Name: 
       Entry: 8
       Data: 

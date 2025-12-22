@@ -1,5 +1,5 @@
 {
-    "name": "_liceD.Utilities.AccountManager.Udon",
+    "name": "_4liceD.Utilities.AccountManager.Udon",
     "rootNamespace": "",
     "references": [
         "UdonSharp.Editor",

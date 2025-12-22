@@ -1,6 +1,6 @@
 {
   "name": "com.4liced.accountmanager",
-  "version": "4.0.0-beta.3",
+  "version": "4.0.0-beta.4",
   "displayName": "4liceD Account Manager",
   "description": "A neutral-branded, community-maintained fork of the Account Manager for converting CSV/JSON account data into VRChat-usable Udon data.",
   "unity": "2022.3",
