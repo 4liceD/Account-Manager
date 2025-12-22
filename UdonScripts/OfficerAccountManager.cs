@@ -862,7 +862,7 @@ namespace 4liceD.Utilities.AccountManager
             // }
         }
 
-        [MenuItem("LPD/Account Manager")]
+        [MenuItem("4liceD/Account Manager")]
         public static void AddToSceneMenu()
         {
             bool exists = Component.FindObjectOfType<OfficerAccountManager>();
