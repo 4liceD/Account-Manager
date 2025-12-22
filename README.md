@@ -3,6 +3,12 @@
 This is a **community-maintained fork** of the original
 [Account-Manager](https://github.com/swiveI/Account-Manager) project.
 
+# Beta
+
+Currently this fork is in Beta.
+It should be useable with the Namespace _4liceD.Utilities.AccountManager
+However I'm still working on a drop in replacement solution, so custom scripts don't need to update their namespace
+
 Account manager is a tool for converting spreadsheet data, via csv, into arrays for easy access by `Udonbehaviours` within VRChat.
 
 This tool is designed to handle tracking player data via spreadsheets and bringing that data into VRChat. 
@@ -46,6 +52,7 @@ All modifications in this fork are documented in commit history.
 ## VRChat Creator Companion Builds
 
 Prebuilt releases for the VRChat Creator Companion are provided for convenience.
+https://4liced.github.io/vpm-listing/
 Source code for each release is available in this repository, as required by GPL-3.0.
 
 ## Disclaimer
