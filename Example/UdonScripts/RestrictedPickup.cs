@@ -3,7 +3,7 @@ using UdonSharp;
 using UnityEngine;
 using VRC.SDKBase;
 using VRC.Udon;
-using LocalPoliceDepartment.Utilities.AccountManager;
+using _4liceD.Utilities.AccountManager;
 
 namespace LocalPoliceDepartment.Examples
 {

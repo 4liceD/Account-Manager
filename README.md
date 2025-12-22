@@ -3,11 +3,11 @@
 This is a **community-maintained fork** of the original
 [Account-Manager](https://github.com/swiveI/Account-Manager) project.
 
-# Beta
+# Technical Changes
 
-Currently this fork is in Beta.
-It should be useable with the Namespace _4liceD.Utilities.AccountManager
-However I'm still working on a drop in replacement solution, so custom scripts don't need to update their namespace
+As the original version went through different namespaces I went for a personal namespace and added a migration tool for older scripts.
+It should be useable with the Namespace _4liceD.Utilities.AccountManager.
+For old scripts please using the namespace migration tool under "Account Manager/Migrate Namespaces".
 
 Account manager is a tool for converting spreadsheet data, via csv, into arrays for easy access by `Udonbehaviours` within VRChat.
 

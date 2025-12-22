@@ -832,7 +832,7 @@ namespace _4liceD.Utilities.AccountManager
             EditorGUILayout.Space();
         }
 
-        [MenuItem("Tools/Account Manager")]
+        [MenuItem("Account Manager/Account Manager")]
         public static void AddToSceneMenu()
         {
             bool exists = Component.FindObjectOfType<OfficerAccountManager>();
