@@ -1,6 +1,6 @@
 {
   "name": "com.4liced.accountmanager",
-  "version": "4.0.0-beta.1",
+  "version": "4.0.0-beta.2",
   "displayName": "4liceD Account Manager",
   "description": "A neutral-branded, community-maintained fork of the Account Manager for converting CSV/JSON account data into VRChat-usable Udon data.",
   "unity": "2022.3",
@@ -15,7 +15,11 @@
     "url": "https://github.com/4liced"
   },
   "vpmDependencies": {
-    "com.vrchat.base": "^3.4",
-    "com.vrchat.worlds": "^3.4"
-  }
+    "com.vrchat.base": "^3.9",
+    "com.vrchat.worlds": "^3.9"
+  },
+  "legacyPackages": [
+    "com.lolipolicedepartment.accountmanager",
+    "com.localpolicedepartment.accountmanager"
+  ]
 }

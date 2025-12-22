@@ -11,7 +11,7 @@ using UnityEditor;
 #endif
 
 
-namespace 4liceD.Utilities.AccountManager
+namespace _4liceD.Utilities.AccountManager
 {
     //-------------------------Custom Enums-------------------------//
     /// <summary>
@@ -696,17 +696,7 @@ namespace 4liceD.Utilities.AccountManager
     [CustomEditor(typeof(OfficerAccountManager))]
     public class OfficerAccountManagerEditor : Editor {
 
-        private Texture2D HeaderBG;
-        private Texture2D HeaderLogo;
-        private Texture2D HeaderText;
-        private Texture2D HeaderTape;
-
-
-
-        private Texture2D twitterLogo;
-        private Texture2D discordLogo;
-        private Texture2D youtubeLogo;
-        private Texture2D kofiLogo;
+        private Texture2D headerTitleBar;
 
         private SerializedProperty performanceLogging;
         private SerializedProperty rawOfficerData;
@@ -725,36 +715,39 @@ namespace 4liceD.Utilities.AccountManager
         }
 
         public override void OnInspectorGUI() {
-            OfficerAccountManager manager = (OfficerAccountManager)target;
+    OfficerAccountManager manager = (OfficerAccountManager)target;
 
-            HeaderBG    = HeaderBG    ?? (Texture2D)AssetDatabase.LoadAssetAtPath("Packages/com.4liced.accountmanager/Resources/Layers/BG.png", typeof(Texture2D));
-            HeaderLogo  = HeaderLogo  ?? (Texture2D)AssetDatabase.LoadAssetAtPath("Packages/com.4liced.accountmanager/Resources/Layers/Logo.png", typeof(Texture2D));
-            HeaderText  = HeaderText  ?? (Texture2D)AssetDatabase.LoadAssetAtPath("Packages/com.4liced.accountmanager/Resources/Layers/Words.png", typeof(Texture2D));
-            HeaderTape  = HeaderTape  ?? (Texture2D)AssetDatabase.LoadAssetAtPath("Packages/com.4liced.accountmanager/Resources/Layers/TapeL1000.png", typeof(Texture2D));
+    // --- Simple title bar header ---
+    if (headerTitleBar == null)
+    {
+        headerTitleBar = (Texture2D)AssetDatabase.LoadAssetAtPath(
+            "Packages/com.4liced.accountmanager/Resources/TITLEBAR.png",
+            typeof(Texture2D)
+        );
+    }
 
-            twitterLogo = twitterLogo ?? (Texture2D)AssetDatabase.LoadAssetAtPath("Packages/com.4liced.accountmanager/Resources/SocialLogos/TwitterLogo.png", typeof(Texture2D));
-            discordLogo = discordLogo ?? (Texture2D)AssetDatabase.LoadAssetAtPath("Packages/com.4liced.accountmanager/Resources/SocialLogos/DiscordLogo.png", typeof(Texture2D));
-            youtubeLogo = youtubeLogo ?? (Texture2D)AssetDatabase.LoadAssetAtPath("Packages/com.4liced.accountmanager/Resources/SocialLogos/YoutubeLogo.png", typeof(Texture2D));
-            kofiLogo    = kofiLogo    ?? (Texture2D)AssetDatabase.LoadAssetAtPath("Packages/com.4liced.accountmanager/Resources/SocialLogos/KofiLogo.png", typeof(Texture2D));
+    const float headerHeight = 128f;
 
-            float imageAspectRatio = ((float) HeaderBG.width) / ((float) HeaderBG.height);
-            float screenAspectRatio = ((float) Screen.width) / ((float) 128);
+    if (headerTitleBar != null)
+    {
+        // Reserve space and draw inside that rect
+        Rect headerRect = GUILayoutUtility.GetRect(Screen.width, headerHeight);
+        GUI.DrawTexture(headerRect, headerTitleBar, ScaleMode.ScaleAndCrop);
+    }
+    else
+    {
+        // Fallback spacing if the texture can't be found
+        GUILayout.Space(10f);
+    }
 
-            bool horizontalStretch = imageAspectRatio < screenAspectRatio;
-            GUI.DrawTexture(new Rect(0, 0, Screen.width, 128), HeaderBG, horizontalStretch ? ScaleMode.ScaleAndCrop : ScaleMode.StretchToFill);
-            GUI.DrawTexture(new Rect(0, 0, horizontalStretch ? 512 : Screen.width, 128), HeaderLogo, ScaleMode.ScaleToFit);
-            GUI.DrawTexture(new Rect(0, 0, Screen.width, 128), HeaderText, ScaleMode.ScaleToFit);
-            //Offset this to the right of the screen
-            GUI.DrawTexture(new Rect(Screen.width - 256, 0, 512, 128), HeaderTape, ScaleMode.ScaleAndCrop);
+    // --- the rest of your inspector code stays the same below this ---
+    // Reused variables
+    bool online = manager.desiredDataSource == DataSource.Internet;
+    bool hasOfflineData = manager.officerDataFile != null;
 
-            
-            GUILayoutUtility.GetRect(Screen.width, 128);
+    // ... (rest of your existing inspector code unchanged)
+}
 
-            // base.OnInspectorGUI(); //We do it manually
-
-            //Reused variabled
-            bool online = manager.desiredDataSource == DataSource.Internet;
-            bool hasOfflineData = manager.officerDataFile != null;
 
 
             //List statistics

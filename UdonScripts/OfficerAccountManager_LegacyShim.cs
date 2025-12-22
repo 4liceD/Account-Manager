@@ -2,7 +2,7 @@
 using VRC.SDKBase;
 using VRC.Udon;
 
-namespace LocalPoliceDepartment.Utilities.AccountManager
+namespace LoliPoliceDepartment.Utilities.AccountManager
 {
     // Short alias for the new namespace
     using NewNS = _4liceD.Utilities.AccountManager;

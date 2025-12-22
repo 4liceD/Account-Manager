@@ -1,5 +1,5 @@
 {
-    "name": "LocalPoliceDepartment.Utilities.AccountManager.Udon",
+    "name": "4liceD.Utilities.AccountManager.Udon",
     "rootNamespace": "",
     "references": [
         "UdonSharp.Editor",
