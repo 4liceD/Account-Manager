@@ -11,7 +11,7 @@ using UnityEditor;
 #endif
 
 
-namespace LocalPoliceDepartment.Utilities.AccountManager
+namespace 4liceD.Utilities.AccountManager
 {
     //-------------------------Custom Enums-------------------------//
     /// <summary>
